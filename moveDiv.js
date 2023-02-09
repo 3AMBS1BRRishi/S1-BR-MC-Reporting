@@ -5,6 +5,7 @@ const getFormattedDateTime = (element) => {
     const dt = new Date($(element).val());
     return `${dt.getDate().toString().padStart(2, '0')}/${(dt.getMonth() + 1).toString().padStart(2, '0')}/${dt.getFullYear()} ${dt.getHours().toString().padStart(2, '0')}${dt.getMinutes().toString().padStart(2, '0')}hrs`;
 };
+
 const getFormattedDate = (element) => {
     const dt = new Date($(element).val());
     return `${dt.getDate().toString().padStart(2, '0')}/${(dt.getMonth() + 1).toString().padStart(2, '0')}/${dt.getFullYear()}`;
@@ -44,6 +45,45 @@ function myFunctionAlert() {
 const rank = document.getElementById('rank')
 const name = document.getElementById('name')
 const nric = document.getElementById('nric')
+const mcresult = document.getElementById('mcduration')
+
+document.getElementById("startdate").addEventListener("change", function() {
+  var input = this.value;
+  var dateEntered = new Date(input);
+
+  mcresult.value = input
+  // console.log(input); //e.g. 2015-11-13
+  // console.log(dateEntered); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+});
+
+document.getElementById("enddate").addEventListener("change", function() {
+  var input = new Date(this.value);
+  // var dateEntered = new Date(input);
+
+  var startdateresult = new Date(mcresult.value)
+
+  console.log(startdateresult)
+  console.log(input)
+
+  var Difference_In_Time = input.getTime() - startdateresult.getTime()
+
+  var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+  console.log(Difference_In_Days)
+      
+  mcresult.value = Difference_In_Days + ' days'
+  // console.log(input); //e.g. 2015-11-13
+  // console.log(dateEntered); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+});
+
+// const startdate = document.getElementById('startdate')
+// const enddate = document.getElementById('enddate')
+
+
+
+
+
+
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
